@@ -1,14 +1,11 @@
 import React from 'react';
-import './App.css';
-import Layout from "./Containers/Layout/Layout";
+import './App.scss';
 import Home from "./Containers/Home/Home";
 
 function App() {
-  return (
-    <Layout>
-      <Home/>
-    </Layout>
-  );
+    return (
+        <Home/>
+    );
 }
 
 export default App;
