@@ -14,10 +14,8 @@ export const Body = ({children}) => {
 
     return (
         <div>
-            <Container maxWidth="lg">
-                <Paper className={classes.root}>
+            <Container maxWidth="lg" style={{marginTop: '20px'}}>
                     {children}
-                </Paper>
             </Container>
         </div>
     );
