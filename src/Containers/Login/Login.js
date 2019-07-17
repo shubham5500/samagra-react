@@ -52,7 +52,7 @@ const Inputs = (props) => {
 
     const onLogin = (e) => {
         props.history.replace('/');
-        localStorage.setItem('loggedIn', 'YES');
+        localStorage.setItem('loggedIn', JSON.stringify(email));
         window.location.reload();
     };
 

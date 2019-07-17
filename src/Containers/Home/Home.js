@@ -13,9 +13,15 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import {Link, Route} from "react-router-dom";
 import {ExitToApp} from '@material-ui/icons';
+import Grid from "@material-ui/core/Grid";
 
 
 class Home extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div>
@@ -27,6 +33,8 @@ class Home extends Component {
                         <Route path="/samagra" component={DashboardSamagra}/>
                         <Route path="/team" component={DashboardTeam}/>
                         <Route path="/individual" component={DashboardIndividual}/>
+                        <Route path="/outreach" component={DashboardOutreach}/>
+                        <Route path="/graphics" component={DashboardGraphics}/>
                     </Aux>
                 </Body>
             </div>
@@ -39,15 +47,17 @@ export default Home;
 
 const HomePageTables = () => {
     return (
-        <Aux>
-            <Typography variant="h6" component="h3">
-                Explore all internal Samagra resources here
-            </Typography>
-            <EnsuringDeliveryTable/>
-            <DrivingGrowthTable/>
-            <NurturingTalentTable/>
-            <FacilitatingOperationsTable/>
-        </Aux>
+        <Grid container className={'center'}>
+            <Grid item xs={9}>
+                <Typography variant="h6" component="h3">
+                    Explore all internal Samagra resources here
+                </Typography>
+                <EnsuringDeliveryTable/>
+                <DrivingGrowthTable/>
+                <NurturingTalentTable/>
+                <FacilitatingOperationsTable/>
+            </Grid>
+        </Grid>
     )
 };
 
@@ -74,6 +84,25 @@ const DashboardIndividual = () => {
         <div>
             <iframe src="http://165.227.62.196:3000/public/dashboard/dd3b845f-0f03-4fd9-b73a-6372fbbfb510"
                     frameBorder="0" width="100%" height="600" allowtransparency="true"/>
+        </div>
+    )
+};
+
+const DashboardOutreach = () => {
+    return (
+        <div>
+            <iframe src="http://165.227.62.196:3000/public/dashboard/2fa9a3e1-aef7-4d4c-affb-c9a8925a7a6a"
+                    frameBorder="0" width="800" height="600" allowtransparency="true"/>
+        </div>
+    )
+};
+
+
+const DashboardGraphics = () => {
+    return (
+        <div>
+            <iframe src="http://165.227.62.196:3000/public/dashboard/175960a5-e748-431f-843e-983d0d07e51d"
+                    frameBorder="0" width="800" height="600" allowtransparency="true"/>
         </div>
     )
 };
@@ -119,27 +148,33 @@ const Navbar = () => {
         link: '/individual'
     }, {
         name: 'Outreach',
-        link: '/#'
+        link: '/outreach'
     }, {
         name: 'Graphics',
-        link: '/#'
+        link: '/graphics'
     }];
     const formsLinks = [{
-        name: 'Samagra',
-        link: '/samagra'
+        name: 'Train Ticket Booking',
+        link: 'https://docs.google.com/forms/d/e/1FAIpQLScd7uHJAqCszIjzqQQJq4eGIAhdK697iu5awO6Xvd_A3HqjoA/viewform?usp=sf_link'
     }, {
-        name: 'Team',
-        link: '/team'
+        name: 'Air Ticket Booking',
+        link: 'https://docs.google.com/forms/d/e/1FAIpQLSdtkFsdDQbT6ieqJ9sTUOaI7AsMBWkPtAQU9pXVnVRDe3aCDA/viewform?usp=sf_link'
     }, {
-        name: 'Individual',
-        link: '/individual'
+        name: 'Leave Application',
+        link: 'https://docs.google.com/forms/d/e/1FAIpQLSdtkFsdDQbT6ieqJ9sTUOaI7AsMBWkPtAQU9pXVnVRDe3aCDA/viewform?usp=sf_link'
     }, {
-        name: 'Outreach',
-        link: '/#'
+        name: 'Graphic Design Request',
+        link: 'https://docs.google.com/forms/d/e/1FAIpQLScshUW8u6qgDWtqwjB4aokHozvoztdQH05X-DoXXmDgSRNFcQ/viewform'
     }, {
-        name: 'Graphics',
-        link: '/#'
-    }];
+        name: 'Referral Form',
+        link: 'https://docs.google.com/forms/d/e/1FAIpQLSdDC33OAKcFxkPj8TMayZQqMgikOGR_ECUoWM5ycZCS1SVBbQ/viewform'
+    },{
+        name: 'Book Issue & Return',
+        link: 'https://docs.google.com/a/samagragovernance.in/forms/d/180SokjC6FgyzPbY4i6oHq4-kkhUcAmrqhVTlbn5_2Cs/edit?usp=drive_open'
+    },{
+        name: 'Darshan Application',
+        link: 'https://docs.google.com/forms/d/e/1FAIpQLSdRU--X2KltfWqevkk526kUJKBhZtLiehE97FpPmrJjz8NC3A/viewform'
+    },];
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -149,7 +184,7 @@ const Navbar = () => {
                             Home
                         </Button>
                     </Link>
-                    <DropdownButton buttonClass={classes.button} buttonText={'Dashboard'} linksArray={dashboardLinks}/>
+                    <DropdownButton buttonClass={classes.button} buttonText={'Dashboard'} linksArray={dashboardLinks} type={'ROUTE'}/>
                     <DropdownButton buttonClass={classes.button} buttonText={'Go To Form'} linksArray={formsLinks}/>
 
                     <Button color="inherit" style={{marginLeft: 'auto'}} className={classes.button} onClick={() => {
@@ -165,17 +200,17 @@ const Navbar = () => {
 };
 
 
-const DropdownButton = ({buttonText, buttonClass, linksArray, location}) => {
+const DropdownButton = ({buttonText, buttonClass, linksArray, type}) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     function handleClick(event) {
         setAnchorEl(event.currentTarget);
     }
 
-    console.log(location);
+
+    const userEmail = JSON.parse(localStorage.getItem('loggedIn')).value;
 
     function handleClose(url) {
-
         setAnchorEl(null);
     }
 
@@ -190,9 +225,13 @@ const DropdownButton = ({buttonText, buttonClass, linksArray, location}) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}>
             {
-                linksArray.map((item, i) => {
-                    return <MenuItem key={i} onClick={handleClose}><Link to={item.link}>{item.name}</Link></MenuItem>
-                })
+               type === 'ROUTE' ?  linksArray.map((item, i) => {
+                    return (userEmail !== 'admin@admin.com' && item.name === 'Outreach') || (userEmail !== 'admin@admin.com' && item.name === 'Graphics') ?
+                        null :
+                        <MenuItem key={i} onClick={handleClose}><Link to={item.link}>{item.name}</Link></MenuItem>
+                }) : linksArray.map((item, i) => {
+                   return <MenuItem key={i} onClick={handleClose}><a className={'form-links'} href={item.link} target={'_blank'}>{item.name}</a></MenuItem>
+               })
             }
         </Menu>
     </Aux>)
