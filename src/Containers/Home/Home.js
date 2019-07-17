@@ -208,7 +208,7 @@ const DropdownButton = ({buttonText, buttonClass, linksArray, type}) => {
     }
 
 
-    const userEmail = JSON.parse(localStorage.getItem('loggedIn')).value;
+    const userEmail = localStorage.getItem('loggedIn') && JSON.parse(localStorage.getItem('loggedIn')).value ? JSON.parse(localStorage.getItem('loggedIn')).value : null;
 
     function handleClose(url) {
         setAnchorEl(null);
