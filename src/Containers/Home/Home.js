@@ -49,7 +49,7 @@ const HomePageTables = () => {
     return (
         <Grid container className={'center'}>
             <Grid item xs={9}>
-                <Typography variant="h6" component="h3">
+                <Typography variant="h4" style={{margin: '10px 0 30px 0'}} component="h3">
                     Explore all internal Samagra resources here
                 </Typography>
                 <EnsuringDeliveryTable/>
@@ -228,7 +228,7 @@ const DropdownButton = ({buttonText, buttonClass, linksArray, type}) => {
                type === 'ROUTE' ?  linksArray.map((item, i) => {
                     return (userEmail !== 'admin@admin.com' && item.name === 'Outreach') || (userEmail !== 'admin@admin.com' && item.name === 'Graphics') ?
                         null :
-                        <MenuItem key={i} onClick={handleClose}><Link to={item.link}>{item.name}</Link></MenuItem>
+                        <MenuItem key={i} onClick={handleClose}><Link className={'form-links'} to={item.link}>{item.name}</Link></MenuItem>
                 }) : linksArray.map((item, i) => {
                    return <MenuItem key={i} onClick={handleClose}><a className={'form-links'} href={item.link} target={'_blank'}>{item.name}</a></MenuItem>
                })
@@ -253,11 +253,11 @@ const EnsuringDeliveryTable = () => {
         link: 'https://docs.google.com/document/d/1CtteOYbzmbXQA-aXZ4TgqZQZM2-av4M9eleJiEVcE38/edit'
     }, {
         name: 'Samagra Team Processes',
-        subHeading: '',
+        subHeading: 'Process',
         link: 'https://drive.google.com/open?id=1WEb1wGrh3nNhnckSGXoXCILUjsPIZkRqTfEblNocH-I'
     }, {
         name: 'Team Pulse Form',
-        subHeading: '',
+        subHeading: 'Process',
         link: 'https://docs.google.com/forms/d/e/1FAIpQLScrmxPXPqhKiUT6Y_RA5J6G7WcWbs7IDknqAxsKa6qh_SMLiw/viewform'
     }, {
         name: '#SamagraWays and Values',
@@ -265,19 +265,19 @@ const EnsuringDeliveryTable = () => {
         link: 'https://drive.google.com/drive/u/0/folders/1gE2KiPhRVY0fZbMSTTw-Lu8rnbJ9vAhy?ogsrc=32'
     }, {
         name: 'Samagra Best Practices Checklists & Templates',
-        subHeading: '',
+        subHeading: 'Guidelines & Checklists',
         link: 'https://drive.google.com/open?id=1WmnpOdbR0nxFRaAcwfJH42pLFfTK45L3ZZ5wiJ06sUw'
     }, {
         name: 'Samagra Workstream Dashboard Checklist',
-        subHeading: '',
+        subHeading: 'Guidelines & Checklists',
         link: 'https://drive.google.com/drive/u/1/folders/16Y7ft2zUhmrYrGm0l8__ppjcivnMKXXq'
     }, {
         name: 'Manager\'s Checklist & Tracker',
-        subHeading: '',
+        subHeading: 'Guidelines & Checklists',
         link: 'https://drive.google.com/open?id=17QzfUjOO9cx1nhlV-ZtUJdWWoMcuDihAqCXd3Lg4G9Q'
     }, {
         name: 'Engagement Onboarding Checklist & Workplan',
-        subHeading: '',
+        subHeading: 'Guidelines & Checklists',
         link: 'https://drive.google.com/open?id=1DHtEwxhxABHwSngK1ukxjTDZM-cx_kMPDgzGJZ8jbcY'
     }];
 
@@ -291,8 +291,8 @@ const EnsuringDeliveryTable = () => {
 
     const bodyView = (body.map((item, i) => {
         return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
-            <TableCell>1.{i + 1}</TableCell>
-            <TableCell>{item.subHeading}</TableCell>
+            <TableCell className={'table-cell-serial-number'}>1.{i + 1}</TableCell>
+            <TableCell className={'sub-heading-cell'}>{item.subHeading}</TableCell>
             <TableCell><a href={item.link} target={'_blank'}>{item.name}</a></TableCell>
         </TableRow>
     }));
@@ -321,7 +321,7 @@ const DrivingGrowthTable = () => {
         link: 'https://docs.google.com/document/d/1WvgSOIfLfE3bNjqa13FbY-jl5w16NeWToo5sM_xB5wY/edit?usp=sharing'
     }, {
         name: 'Samagra Intership Provisional Plan',
-        subHeading: '',
+        subHeading: 'Recruitment',
         link: 'https://docs.google.com/spreadsheets/d/1XLQzLq-_dGcEpHdl5aJd-yVlFFNinbQ99IRKLmZYptg/edit#gid=0'
     }, {
         name: 'Outreach Plan',
@@ -336,8 +336,8 @@ const DrivingGrowthTable = () => {
 
     const bodyView = (body.map((item, i) => {
         return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
-            <TableCell>2.{i + 1}</TableCell>
-            <TableCell>{item.subHeading}</TableCell>
+            <TableCell className={'table-cell-serial-number'}>2.{i + 1}</TableCell>
+            <TableCell className={'sub-heading-cell'}>{item.subHeading}</TableCell>
             <TableCell><a href={item.link} target={'_blank'}>{item.name}</a></TableCell>
         </TableRow>
     }));
@@ -370,7 +370,7 @@ const NurturingTalentTable = () => {
         link: 'https://drive.google.com/open?id=1PwnJJmq2TEJpIJd1bEYI9zRe_PWktnujFp2mvXKaBws'
     }, {
         name: 'Performance Appraisal Metrics',
-        subHeading: '',
+        subHeading: 'Current Employees',
         link: 'https://drive.google.com/open?id=1HcYyGy-2ohY4MQVqjkSsl_SKknMbbcXWBwDafZfWVJU'
     },];
 
@@ -381,8 +381,8 @@ const NurturingTalentTable = () => {
 
     const bodyView = (body.map((item, i) => {
         return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
-            <TableCell>3.{i + 1}</TableCell>
-            <TableCell>{item.subHeading}</TableCell>
+            <TableCell className={'table-cell-serial-number'}>3.{i + 1}</TableCell>
+            <TableCell className={'sub-heading-cell'}>{item.subHeading}</TableCell>
             <TableCell><a href={item.link} target={'_blank'}>{item.name}</a></TableCell>
         </TableRow>
     }));
@@ -411,7 +411,7 @@ const FacilitatingOperationsTable = () => {
         link: 'https://docs.google.com/spreadsheets/d/1xDL-yFB32d3tseFLz0_CRWqZ0ZkAai7PmpHxqs-C6Bo/edit#gid=947839659'
     }, {
         name: 'Delhi Office Management Checklist',
-        subHeading: '',
+        subHeading: 'Stay',
         link: 'https://docs.google.com/spreadsheets/d/1rC7gQ-awZsEZbsGcqWecksAkb8C6Ftny97kHFKgPoaY/edit#gid=0'
     }, {
         name: 'Cab Guidelines',
@@ -419,11 +419,11 @@ const FacilitatingOperationsTable = () => {
         link: 'https://drive.google.com/open?id=1iCXL2lcCl64fXPmu9khaydKsR2-WpioK'
     }, {
         name: 'Train Guidelines',
-        subHeading: '',
+        subHeading: 'Travel',
         link: 'https://drive.google.com/file/d/1z6F6oP7AheWRGHeiq01X0dNSav_XoPW2/view?usp=sharing'
     }, {
         name: 'Air Travel Guidelines',
-        subHeading: '',
+        subHeading: 'Travel',
         link: 'https://drive.google.com/file/d/15qxdgz78R3iyvnILESptErGGkgxtv1pG/view?usp=sharing'
     }, {
         name: 'Leave Policy',
@@ -431,11 +431,11 @@ const FacilitatingOperationsTable = () => {
         link: 'https://drive.google.com/open?id=1dfwDmuJ-FuRyhh2D62UH9lJBKbmszPji'
     }, {
         name: 'Holiday List',
-        subHeading: '',
+        subHeading: 'Leaves',
         link: 'https://drive.google.com/open?id=1yKJewoKPvuKZ7zl9iUUGf7qZhEjvs52ySK6fqm-w4_8'
     }, {
         name: 'Darshan Guidelines',
-        subHeading: '',
+        subHeading: 'Leaves',
         link: 'https://drive.google.com/file/d/1KaSFPr63Yt5HlTf0gQH12MZDeC1buDAI/view?usp=sharing'
     }, {
         name: 'Tech Directory',
@@ -443,19 +443,19 @@ const FacilitatingOperationsTable = () => {
         link: 'https://docs.google.com/document/d/1wiKsSrtkfWoPzsO_VBLDHBQsn9IGI5RW_DeHk-FqBVo/edit#'
     }, {
         name: 'Graphic Design & Branding Guidelines',
-        subHeading: '',
+        subHeading: 'Services',
         link: 'https://drive.google.com/drive/u/1/folders/1PzUVWdMr0FU2yCBtoVh7CfD0ZpL-fzYE'
     }, {
         name: 'Graphic Design Calendar',
-        subHeading: '',
+        subHeading: 'Services',
         link: 'https://docs.google.com/spreadsheets/d/1UxhLpwkzNoUcWzHNuh4Cwa8amq3lllpmAg67n0t5f4o/edit#gid=2095892444'
     }, {
         name: 'Library Guidelines',
-        subHeading: '',
+        subHeading: 'Services',
         link: 'https://drive.google.com/file/d/1BxzngZo548_BqJKWNfnn6Qng6mSMB7rb/view?usp=sharing'
     }, {
         name: 'Library Catalogue',
-        subHeading: '',
+        subHeading: 'Services',
         link: 'https://docs.google.com/spreadsheets/d/1PxYplRzAqISLr3q_A7--nkq5DWhEDR87kkDE-975wwY/edit#gid=944677166'
     }, {
         name: 'Engagement Update Guidelines',
@@ -463,11 +463,11 @@ const FacilitatingOperationsTable = () => {
         link: 'https://drive.google.com/file/d/1Lab9eak2I_SA7M7aSO8X4FWvOziRM1D2/view?usp=sharing'
     }, {
         name: 'Townhall Guidelines',
-        subHeading: '',
+        subHeading: 'Updates',
         link: 'https://drive.google.com/file/d/13UD1z3beMEdoBSn8CCquiuZigZ5zPycv/view?usp=sharing'
     }, {
         name: 'Townhall PPT and Pictures',
-        subHeading: '',
+        subHeading: 'Updates',
         link: 'https://drive.google.com/open?id=13VLMfF_6oVJyTar3kCc6QM8tdnwgFU7k'
     }, {
         name: 'Policy and operating guidelines for ICC',
@@ -482,8 +482,8 @@ const FacilitatingOperationsTable = () => {
 
     const bodyView = (body.map((item, i) => {
         return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
-            <TableCell>4.{i + 1}</TableCell>
-            <TableCell>{item.subHeading}</TableCell>
+            <TableCell className={'table-cell-serial-number'}>4.{i + 1}</TableCell>
+            <TableCell className={'sub-heading-cell'}>{item.subHeading}</TableCell>
             <TableCell><a href={item.link} target={'_blank'}>{item.name}</a></TableCell>
         </TableRow>
     }));
