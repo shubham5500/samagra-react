@@ -49,7 +49,7 @@ const HomePageTables = () => {
     return (
         <Grid container className={'center'}>
             <Grid item xs={9}>
-                <Typography variant="h3" component="h3">
+                <Typography variant="h6" component="h3">
                     Explore all internal Samagra resources here
                 </Typography>
                 <EnsuringDeliveryTable/>
@@ -184,8 +184,8 @@ const Navbar = () => {
                             Home
                         </Button>
                     </Link>
-                    <DropdownButton buttonClass={classes.button} buttonText={'Dashboards'} linksArray={dashboardLinks} type={'ROUTE'}/>
-                    <DropdownButton buttonClass={classes.button} buttonText={'Go To Forms'} linksArray={formsLinks}/>
+                    <DropdownButton buttonClass={classes.button} buttonText={'Dashboard'} linksArray={dashboardLinks} type={'ROUTE'}/>
+                    <DropdownButton buttonClass={classes.button} buttonText={'Go To Form'} linksArray={formsLinks}/>
 
                     <Button color="inherit" style={{marginLeft: 'auto'}} className={classes.button} onClick={() => {
                         localStorage.removeItem('loggedIn');
@@ -250,7 +250,6 @@ const EnsuringDeliveryTable = () => {
     const body = [{
         name: 'Samagra Quality Review Framework',
         subHeading: 'Process',
-        rowSpan: '3',
         link: 'https://docs.google.com/document/d/1CtteOYbzmbXQA-aXZ4TgqZQZM2-av4M9eleJiEVcE38/edit'
     }, {
         name: 'Samagra Team Processes',
@@ -263,7 +262,6 @@ const EnsuringDeliveryTable = () => {
     }, {
         name: '#SamagraWays and Values',
         subHeading: 'Guidelines & Checklists',
-        rowSpan: '5',
         link: 'https://drive.google.com/drive/u/0/folders/1gE2KiPhRVY0fZbMSTTw-Lu8rnbJ9vAhy?ogsrc=32'
     }, {
         name: 'Samagra Best Practices Checklists & Templates',
@@ -292,13 +290,10 @@ const EnsuringDeliveryTable = () => {
         })} </TableRow>;
 
     const bodyView = (body.map((item, i) => {
-        return <TableRow key={item.name} scope="item">
+        return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
             <TableCell>1.{i + 1}</TableCell>
-            {
-                item.hasOwnProperty('rowSpan') ?  <TableCell style={{verticalAlign: 'top'}} rowSpan={item.rowSpan}>{item.subHeading}</TableCell> : null
-            }
-
-            <TableCell style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}><a href={item.link} target={'_blank'} >{item.name}</a></TableCell>
+            <TableCell>{item.subHeading}</TableCell>
+            <TableCell><a href={item.link} target={'_blank'}>{item.name}</a></TableCell>
         </TableRow>
     }));
 
@@ -323,7 +318,6 @@ const DrivingGrowthTable = () => {
     const body = [{
         name: 'Associate Referral Policy',
         subHeading: 'Recruitment',
-        rowSpan: '2',
         link: 'https://docs.google.com/document/d/1WvgSOIfLfE3bNjqa13FbY-jl5w16NeWToo5sM_xB5wY/edit?usp=sharing'
     }, {
         name: 'Samagra Intership Provisional Plan',
@@ -332,7 +326,6 @@ const DrivingGrowthTable = () => {
     }, {
         name: 'Outreach Plan',
         subHeading: 'Outreach',
-        rowSpan: '1',
         link: 'https://drive.google.com/open?id=1YUe53P8AZXNR_LRzruDbwPbHklUYpvvF'
     },];
 
@@ -342,13 +335,10 @@ const DrivingGrowthTable = () => {
         })} </TableRow>;
 
     const bodyView = (body.map((item, i) => {
-        return <TableRow key={item.name} scope="item">
-            <TableCell>1.{i + 1}</TableCell>
-            {
-                item.hasOwnProperty('rowSpan') ?  <TableCell style={{verticalAlign: 'top'}} rowSpan={item.rowSpan}>{item.subHeading}</TableCell> : null
-            }
-
-            <TableCell style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}><a href={item.link} target={'_blank'} >{item.name}</a></TableCell>
+        return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
+            <TableCell>2.{i + 1}</TableCell>
+            <TableCell>{item.subHeading}</TableCell>
+            <TableCell><a href={item.link} target={'_blank'}>{item.name}</a></TableCell>
         </TableRow>
     }));
 
@@ -373,12 +363,10 @@ const NurturingTalentTable = () => {
     const body = [{
         name: 'Orientation Plan',
         subHeading: 'New Employees',
-        rowSpan: '1',
         link: 'https://docs.google.com/spreadsheets/d/1onohZxqyY1h1F_1_Kpkti121P94LP2SKPYfQPys4eH4/edit#gid=1163378847'
     }, {
         name: 'PD Framework & Tracker',
         subHeading: 'Current Employees',
-        rowSpan: '2',
         link: 'https://drive.google.com/open?id=1PwnJJmq2TEJpIJd1bEYI9zRe_PWktnujFp2mvXKaBws'
     }, {
         name: 'Performance Appraisal Metrics',
@@ -392,13 +380,10 @@ const NurturingTalentTable = () => {
         })} </TableRow>;
 
     const bodyView = (body.map((item, i) => {
-        return <TableRow key={item.name} scope="item">
-            <TableCell>1.{i + 1}</TableCell>
-            {
-                item.hasOwnProperty('rowSpan') ?  <TableCell style={{verticalAlign: 'top'}} rowSpan={item.rowSpan}>{item.subHeading}</TableCell> : null
-            }
-
-            <TableCell style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}><a href={item.link} target={'_blank'} >{item.name}</a></TableCell>
+        return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
+            <TableCell>3.{i + 1}</TableCell>
+            <TableCell>{item.subHeading}</TableCell>
+            <TableCell><a href={item.link} target={'_blank'}>{item.name}</a></TableCell>
         </TableRow>
     }));
 
@@ -423,7 +408,6 @@ const FacilitatingOperationsTable = () => {
     const body = [{
         name: 'Guest House Facilities List',
         subHeading: 'Stay',
-        rowSpan: '2',
         link: 'https://docs.google.com/spreadsheets/d/1xDL-yFB32d3tseFLz0_CRWqZ0ZkAai7PmpHxqs-C6Bo/edit#gid=947839659'
     }, {
         name: 'Delhi Office Management Checklist',
@@ -432,7 +416,6 @@ const FacilitatingOperationsTable = () => {
     }, {
         name: 'Cab Guidelines',
         subHeading: 'Travel',
-        rowSpan: '3',
         link: 'https://drive.google.com/open?id=1iCXL2lcCl64fXPmu9khaydKsR2-WpioK'
     }, {
         name: 'Train Guidelines',
@@ -445,7 +428,6 @@ const FacilitatingOperationsTable = () => {
     }, {
         name: 'Leave Policy',
         subHeading: 'Leaves',
-        rowSpan: '3',
         link: 'https://drive.google.com/open?id=1dfwDmuJ-FuRyhh2D62UH9lJBKbmszPji'
     }, {
         name: 'Holiday List',
@@ -458,7 +440,6 @@ const FacilitatingOperationsTable = () => {
     }, {
         name: 'Tech Directory',
         subHeading: 'Services',
-        rowSpan: '5',
         link: 'https://docs.google.com/document/d/1wiKsSrtkfWoPzsO_VBLDHBQsn9IGI5RW_DeHk-FqBVo/edit#'
     }, {
         name: 'Graphic Design & Branding Guidelines',
@@ -479,7 +460,6 @@ const FacilitatingOperationsTable = () => {
     }, {
         name: 'Engagement Update Guidelines',
         subHeading: 'Updates',
-        rowSpan: '3',
         link: 'https://drive.google.com/file/d/1Lab9eak2I_SA7M7aSO8X4FWvOziRM1D2/view?usp=sharing'
     }, {
         name: 'Townhall Guidelines',
@@ -492,7 +472,6 @@ const FacilitatingOperationsTable = () => {
     }, {
         name: 'Policy and operating guidelines for ICC',
         subHeading: 'Policy Against Sexual Harassment',
-        rowSpan: '1',
         link: 'https://drive.google.com/open?id=12LAHymwuPW6O6HLt7Cdh1SXX88jroep7'
     },];
 
@@ -502,13 +481,10 @@ const FacilitatingOperationsTable = () => {
         })} </TableRow>;
 
     const bodyView = (body.map((item, i) => {
-        return <TableRow key={item.name} scope="item">
-            <TableCell>1.{i + 1}</TableCell>
-            {
-                item.hasOwnProperty('rowSpan') ?  <TableCell style={{verticalAlign: 'top'}} rowSpan={item.rowSpan}>{item.subHeading}</TableCell> : null
-            }
-
-            <TableCell style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}><a href={item.link} target={'_blank'} >{item.name}</a></TableCell>
+        return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
+            <TableCell>4.{i + 1}</TableCell>
+            <TableCell>{item.subHeading}</TableCell>
+            <TableCell><a href={item.link} target={'_blank'}>{item.name}</a></TableCell>
         </TableRow>
     }));
 
