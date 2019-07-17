@@ -11,28 +11,74 @@ import Typography from "@material-ui/core/Typography";
 import {GenericTable} from "../../Components/GenericTable/GenericTable";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
+import {BrowserRouter, Link, Route} from "react-router-dom";
+import { ExitToApp } from '@material-ui/icons';
+
 
 class Home extends Component {
     render() {
         return (
             <div>
                 <BannerImage/>
-                <Navbar/>
-                <Body>
-                    <Typography variant="h6" component="h3">
-                        Explore all internal Samagra resources here
-                    </Typography>
-                    <EnsuringDeliveryTable/>
-                    <DrivingGrowthTable/>
-                    <NurturingTalentTable/>
-                    <FacilitatingOperationsTable/>
-                </Body>
+                <BrowserRouter>
+                    <Navbar/>
+                    <Body>
+                        <Aux>
+                            <Route path="/home" component={HomePageTables}/>
+                            <Route path="/samagra" component={DashboardSamagra}/>
+                            <Route path="/team" component={DashboardTeam}/>
+                            <Route path="/individual" component={DashboardIndividual}/>
+                        </Aux>
+                    </Body>
+                </BrowserRouter>
             </div>
         )
     }
 }
 
 export default Home;
+
+
+const HomePageTables = () => {
+    return (
+        <Aux>
+            <Typography variant="h6" component="h3">
+                Explore all internal Samagra resources here
+            </Typography>
+            <EnsuringDeliveryTable/>
+            <DrivingGrowthTable/>
+            <NurturingTalentTable/>
+            <FacilitatingOperationsTable/>
+        </Aux>
+    )
+};
+
+const DashboardSamagra = () => {
+    return (
+        <div>
+            <iframe src="http://165.227.62.196:3000/public/dashboard/ca691014-04b6-49ac-a449-bcbdad4350c2"
+                    frameBorder="0" width="100%" height="600" allowtransparency="true"/>
+        </div>
+    )
+};
+
+const DashboardTeam = () => {
+    return (
+        <div>
+            <iframe src="http://165.227.62.196:3000/public/dashboard/961323d3-b81f-4826-99c0-b79c6fc7afa6"
+                    frameBorder="0" width="100%" height="600" allowtransparency="true"/>
+        </div>
+    )
+};
+
+const DashboardIndividual = () => {
+    return (
+        <div>
+            <iframe src="http://165.227.62.196:3000/public/dashboard/dd3b845f-0f03-4fd9-b73a-6372fbbfb510"
+                    frameBorder="0" width="100%" height="600" allowtransparency="true"/>
+        </div>
+    )
+};
 
 
 const BannerImage = () => {
@@ -64,16 +110,56 @@ const useStyles = makeStyles(theme => ({
 
 const Navbar = () => {
     const classes = useStyles();
-
+    const dashboardLinks = [{
+        name: 'Samagra',
+        link: '/samagra'
+    }, {
+        name: 'Team',
+        link: '/team'
+    }, {
+        name: 'Individual',
+        link: '/individual'
+    }, {
+        name: 'Outreach',
+        link: '/#'
+    }, {
+        name: 'Graphics',
+        link: '/#'
+    }];
+    const formsLinks = [{
+        name: 'Samagra',
+        link: '/samagra'
+    }, {
+        name: 'Team',
+        link: '/team'
+    }, {
+        name: 'Individual',
+        link: '/individual'
+    }, {
+        name: 'Outreach',
+        link: '/#'
+    }, {
+        name: 'Graphics',
+        link: '/#'
+    }];
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <Button color="inherit" className={classes.button}>
-                        Primary
+                    <Link to={'/'} style={{textDecoration: 'none', color: 'white'}}>
+                        <Button color="inherit" className={classes.button}>
+                            Home
+                        </Button>
+                    </Link>
+                    <DropdownButton buttonClass={classes.button} buttonText={'Dashboard'} linksArray={dashboardLinks}/>
+                    <DropdownButton buttonClass={classes.button} buttonText={'Go To Form'} linksArray={formsLinks}/>
+
+                    <Button color="inherit" style={{marginLeft: 'auto'}} className={classes.button} onClick={() => {
+                        localStorage.removeItem('loggedIn');
+                        window.location.reload();
+                    }}>
+                        <ExitToApp/> Logout
                     </Button>
-                    <DropdownButton buttonClass={classes.button} buttonText={'Dashboard'}/>
-                    <DropdownButton buttonClass={classes.button} buttonText={'Go To Form'}/>
                 </Toolbar>
             </AppBar>
         </div>
@@ -81,14 +167,17 @@ const Navbar = () => {
 };
 
 
-const DropdownButton = ({buttonText, buttonClass}) => {
+const DropdownButton = ({buttonText, buttonClass, linksArray, location}) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     function handleClick(event) {
         setAnchorEl(event.currentTarget);
     }
 
-    function handleClose() {
+    console.log(location);
+
+    function handleClose(url) {
+
         setAnchorEl(null);
     }
 
@@ -102,9 +191,11 @@ const DropdownButton = ({buttonText, buttonClass}) => {
             keepMounted
             open={Boolean(anchorEl)}
             onClose={handleClose}>
-            <MenuItem onClick={handleClose}>Menu Item</MenuItem>
-            <MenuItem onClick={handleClose}>Menu Item</MenuItem>
-            <MenuItem onClick={handleClose}>Menu Item</MenuItem>
+            {
+                linksArray.map((item, i) => {
+                    return <MenuItem key={i} onClick={handleClose}><Link to={item.link}>{item.name}</Link></MenuItem>
+                })
+            }
         </Menu>
     </Aux>)
 };
@@ -162,7 +253,7 @@ const EnsuringDeliveryTable = () => {
         })} </TableRow>;
 
     const bodyView = (body.map((item, i) => {
-        return <TableRow key={item.name} scope="item">
+        return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
             <TableCell>1.{i + 1}</TableCell>
             <TableCell>{item.subHeading}</TableCell>
             <TableCell><a href={item.link} target={'_blank'}>{item.name}</a></TableCell>
@@ -203,14 +294,11 @@ const DrivingGrowthTable = () => {
 
     const headerView = <TableRow>{
         header.map((item, i) => {
-            return (
-                i === 0 ? <TableCell align="left">{item.name}</TableCell> :
-                    <TableCell align="left">{item.name}</TableCell>
-            )
+            return (<TableCell key={i} align="left">{item.name}</TableCell>)
         })} </TableRow>;
 
     const bodyView = (body.map((item, i) => {
-        return <TableRow key={item.name} scope="item">
+        return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
             <TableCell>2.{i + 1}</TableCell>
             <TableCell>{item.subHeading}</TableCell>
             <TableCell><a href={item.link} target={'_blank'}>{item.name}</a></TableCell>
@@ -251,14 +339,11 @@ const NurturingTalentTable = () => {
 
     const headerView = <TableRow>{
         header.map((item, i) => {
-            return (
-                i === 0 ? <TableCell align="left">{item.name}</TableCell> :
-                    <TableCell align="left">{item.name}</TableCell>
-            )
+            return (<TableCell key={i} align="left">{item.name}</TableCell>)
         })} </TableRow>;
 
     const bodyView = (body.map((item, i) => {
-        return <TableRow key={item.name} scope="item">
+        return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
             <TableCell>3.{i + 1}</TableCell>
             <TableCell>{item.subHeading}</TableCell>
             <TableCell><a href={item.link} target={'_blank'}>{item.name}</a></TableCell>
@@ -355,14 +440,11 @@ const FacilitatingOperationsTable = () => {
 
     const headerView = <TableRow>{
         header.map((item, i) => {
-            return (
-                i === 0 ? <TableCell align="left">{item.name}</TableCell> :
-                    <TableCell align="left">{item.name}</TableCell>
-            )
+            return (<TableCell key={i} align="left">{item.name}</TableCell>)
         })} </TableRow>;
 
     const bodyView = (body.map((item, i) => {
-        return <TableRow key={item.name} scope="item">
+        return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
             <TableCell>4.{i + 1}</TableCell>
             <TableCell>{item.subHeading}</TableCell>
             <TableCell><a href={item.link} target={'_blank'}>{item.name}</a></TableCell>
