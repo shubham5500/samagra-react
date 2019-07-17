@@ -11,8 +11,8 @@ import Typography from "@material-ui/core/Typography";
 import {GenericTable} from "../../Components/GenericTable/GenericTable";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
-import {BrowserRouter, Link, Route} from "react-router-dom";
-import { ExitToApp } from '@material-ui/icons';
+import {Link, Route} from "react-router-dom";
+import {ExitToApp} from '@material-ui/icons';
 
 
 class Home extends Component {
@@ -20,17 +20,15 @@ class Home extends Component {
         return (
             <div>
                 <BannerImage/>
-                <BrowserRouter>
-                    <Navbar/>
-                    <Body>
-                        <Aux>
-                            <Route path="/home" component={HomePageTables}/>
-                            <Route path="/samagra" component={DashboardSamagra}/>
-                            <Route path="/team" component={DashboardTeam}/>
-                            <Route path="/individual" component={DashboardIndividual}/>
-                        </Aux>
-                    </Body>
-                </BrowserRouter>
+                <Navbar/>
+                <Body>
+                    <Aux>
+                        <Route path="/" exact component={HomePageTables}/>
+                        <Route path="/samagra" component={DashboardSamagra}/>
+                        <Route path="/team" component={DashboardTeam}/>
+                        <Route path="/individual" component={DashboardIndividual}/>
+                    </Aux>
+                </Body>
             </div>
         )
     }
