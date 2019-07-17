@@ -12,6 +12,9 @@ class App extends Component {
     }
 
     render() {
+        if (localStorage.getItem('loggedIn') && localStorage.getItem('loggedIn') === 'YES') {
+            localStorage.removeItem('loggedIn')
+        }
         const authCheck = localStorage.getItem('loggedIn');
         const view = authCheck ? <Route path={'/'} component={Home}/> : <Redirect to={{
             pathname: '/login'
