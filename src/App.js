@@ -7,15 +7,11 @@ import Login from "./Containers/Login/Login";
 
 class App extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         if (localStorage.getItem('loggedIn') && localStorage.getItem('loggedIn') === 'YES') {
             localStorage.removeItem('loggedIn')
         }
-        const authCheck = localStorage.getItem('loggedIn');
+        const authCheck = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : false;
         const view = authCheck ? <Route path={'/'} component={Home}/> : <Redirect to={{
             pathname: '/login'
         }} />;

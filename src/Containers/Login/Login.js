@@ -2,13 +2,12 @@ import React, {Component, useState} from 'react';
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Avatar from "@material-ui/core/Avatar";
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core";
 import {withRouter} from "react-router";
-
+import {baseUrl} from "../../Shared/utils";
+import Toast from "../../Components/Toast/Toast";
 
 class Login extends Component {
     render() {
@@ -46,14 +45,62 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Inputs = (props) => {
+    const [toastData, setToastData] = React.useState({
+        message: '',
+        className: '',
+        isOpen: false
+    });
+
+    function handleClose(event, reason) {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setToastData({
+            message: '',
+            className: '',
+            isOpen: false
+        })
+    }
+
+    function handleOpen(message, className) {
+        setToastData({
+            message,
+            className,
+            isOpen: true
+        });
+    }
+
     const classes = useStyles();
-    console.log(props);
-    const emailReg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     const onLogin = (e) => {
-        props.history.replace('/');
-        localStorage.setItem('loggedIn', JSON.stringify(email));
-        window.location.reload();
+        e.preventDefault();
+        const o = {
+            username: email.value,
+            password: password.value
+        };
+        fetch(`${baseUrl}/api/authenticate`, {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(o)
+        }).then((success) => success.json()).then((data)=> {
+            if (data && data.error) {
+                throw data.error
+            }
+            if (data && data.data && data.data.token) {
+                const o = {
+                    username: email.value,
+                    token: data.data.token
+                };
+                localStorage.setItem('userData', JSON.stringify(o));
+                handleOpen('Login Success', 'success');
+                props.history.push('/');
+                window.location.reload();
+            }
+        }).catch((error) => {
+            handleOpen(error, 'error');
+        })
     };
 
     const [email, setEmail] = useState({
@@ -72,29 +119,30 @@ const Inputs = (props) => {
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
             <div className={classes.paper}>
-                <Typography component="h1" variant="h5">
+                <div>
+                    <img width={'100%'} src={require('../../static/logo.png')}/>
+                </div>
+                <Typography component="h1" variant="h5" style={{marginTop: '20px'}}>
                     Sign in
                 </Typography>
-                <form className={classes.form} noValidate>
+                <Toast message={toastData.message} handleClose={handleClose} open={toastData.isOpen} toastClassName={toastData.className}/>
+               <form className={classes.form} noValidate>
                     <TextField
                         variant="outlined"
                         margin="normal"
                         required
-                        error={!emailReg.test(email.value)}
                         fullWidth
                         id="email"
-                        label="Email Address"
-                        name="email"
+                        label="Username"
+                        name="username"
                         value={email.value}
                         onChange={onChange.bind(this, 'EMAIL')}
-                        autoComplete="email"
                         autoFocus
                     />
                     <TextField
                         variant="outlined"
                         margin="normal"
                         required
-                        error={!(password.value.length > 6)}
                         fullWidth
                         name="password"
                         label="Password"
@@ -110,7 +158,6 @@ const Inputs = (props) => {
                         variant="contained"
                         color="primary"
                         onClick={onLogin.bind(this)}
-                        disabled={!(emailReg.test(email.value) && (password.value.length > 6))}
                         className={classes.submit}>
                         Sign In
                     </Button>

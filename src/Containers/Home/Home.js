@@ -188,7 +188,7 @@ const Navbar = () => {
                     <DropdownButton buttonClass={classes.button} buttonText={'Go To Forms'} linksArray={formsLinks}/>
 
                     <Button color="inherit" style={{marginLeft: 'auto'}} className={classes.button} onClick={() => {
-                        localStorage.removeItem('loggedIn');
+                        localStorage.removeItem('userData');
                         window.location.reload();
                     }}>
                         <ExitToApp/> Logout
@@ -208,7 +208,7 @@ const DropdownButton = ({buttonText, buttonClass, linksArray, type}) => {
     }
 
 
-    const userEmail = localStorage.getItem('loggedIn') && JSON.parse(localStorage.getItem('loggedIn')).value ? JSON.parse(localStorage.getItem('loggedIn')).value : '';
+    const userEmail = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')).username : '';
 
     function handleClose(url) {
         setAnchorEl(null);
@@ -226,7 +226,7 @@ const DropdownButton = ({buttonText, buttonClass, linksArray, type}) => {
             onClose={handleClose}>
             {
                type === 'ROUTE' ?  linksArray.map((item, i) => {
-                    return (userEmail !== 'admin@samagragovernance.in' && item.name === 'Outreach') || (userEmail !== 'admin@samagragovernance.in' && item.name === 'Graphics') ?
+                    return (userEmail !== 'admin' && item.name === 'Outreach') || (userEmail !== 'admin' && item.name === 'Graphics') ?
                         null :
                         <MenuItem key={i} onClick={handleClose}><Link className={'form-links'} to={item.link}>{item.name}</Link></MenuItem>
                 }) : linksArray.map((item, i) => {
@@ -283,11 +283,8 @@ const EnsuringDeliveryTable = () => {
 
     const headerView = <TableRow>{
         header.map((item, i) => {
-            return (
-                i === 0 ? <TableCell align="left">{item.name}</TableCell> :
-                    <TableCell align="left">{item.name}</TableCell>
-            )
-        })} </TableRow>;
+            return (<TableCell key={i} align="left">{item.name}</TableCell>)
+        })}</TableRow>;
 
     const bodyView = (body.map((item, i) => {
         return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
@@ -332,7 +329,7 @@ const DrivingGrowthTable = () => {
     const headerView = <TableRow>{
         header.map((item, i) => {
             return (<TableCell key={i} align="left">{item.name}</TableCell>)
-        })} </TableRow>;
+        })}</TableRow>;
 
     const bodyView = (body.map((item, i) => {
         return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
@@ -377,7 +374,7 @@ const NurturingTalentTable = () => {
     const headerView = <TableRow>{
         header.map((item, i) => {
             return (<TableCell key={i} align="left">{item.name}</TableCell>)
-        })} </TableRow>;
+        })}</TableRow>;
 
     const bodyView = (body.map((item, i) => {
         return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
@@ -478,7 +475,7 @@ const FacilitatingOperationsTable = () => {
     const headerView = <TableRow>{
         header.map((item, i) => {
             return (<TableCell key={i} align="left">{item.name}</TableCell>)
-        })} </TableRow>;
+        })}</TableRow>;
 
     const bodyView = (body.map((item, i) => {
         return <TableRow key={item.name} scope="item" style={{backgroundColor: i % 2 === 0 ? '#f7f7f7' : 'white'}}>
