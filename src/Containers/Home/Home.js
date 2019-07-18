@@ -184,8 +184,8 @@ const Navbar = () => {
                             Home
                         </Button>
                     </Link>
-                    <DropdownButton buttonClass={classes.button} buttonText={'Dashboard'} linksArray={dashboardLinks} type={'ROUTE'}/>
-                    <DropdownButton buttonClass={classes.button} buttonText={'Go To Form'} linksArray={formsLinks}/>
+                    <DropdownButton buttonClass={classes.button} buttonText={'Dashboards'} linksArray={dashboardLinks} type={'ROUTE'}/>
+                    <DropdownButton buttonClass={classes.button} buttonText={'Go To Forms'} linksArray={formsLinks}/>
 
                     <Button color="inherit" style={{marginLeft: 'auto'}} className={classes.button} onClick={() => {
                         localStorage.removeItem('loggedIn');
@@ -226,7 +226,7 @@ const DropdownButton = ({buttonText, buttonClass, linksArray, type}) => {
             onClose={handleClose}>
             {
                type === 'ROUTE' ?  linksArray.map((item, i) => {
-                    return (userEmail !== 'admin@admin.com' && item.name === 'Outreach') || (userEmail !== 'admin@admin.com' && item.name === 'Graphics') ?
+                    return (userEmail !== 'admin@samagragovernance.in' && item.name === 'Outreach') || (userEmail !== 'admin@samagragovernance.in' && item.name === 'Graphics') ?
                         null :
                         <MenuItem key={i} onClick={handleClose}><Link className={'form-links'} to={item.link}>{item.name}</Link></MenuItem>
                 }) : linksArray.map((item, i) => {
