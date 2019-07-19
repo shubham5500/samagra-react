@@ -36,6 +36,8 @@ class Home extends Component {
                         <Route path="/individual" component={DashboardIndividual}/>
                         <Route path="/outreach" component={DashboardOutreach}/>
                         <Route path="/graphics" component={DashboardGraphics}/>
+                        <Route path="/recruitment" component={DashboardRecruitment}/>
+                        <Route path="/guest-house" component={DashboardGuesthouse}/>
                     </Aux>
                 </Body>
             </div>
@@ -111,6 +113,24 @@ const DashboardGraphics = () => {
     )
 };
 
+const DashboardRecruitment = () => {
+    return (
+        <div>
+            <iframe src="http://165.227.62.196:3000/public/dashboard/8369787f-5b9c-4b91-97fa-d82519f96156"
+                    frameBorder="0" width="100%" height="900" allowtransparency="true"/>
+        </div>
+    )
+};
+
+const DashboardGuesthouse = () => {
+    return (
+        <div>
+            <iframe src="http://165.227.62.196:3000/public/dashboard/175960a5-e748-431f-843e-983d0d07e51d"
+                    frameBorder="0" width="100%" height="900" allowtransparency="true"/>
+        </div>
+    )
+};
+
 
 const BannerImage = () => {
     return (
@@ -156,6 +176,12 @@ const Navbar = () => {
     }, {
         name: 'Graphics',
         link: '/graphics'
+    }, {
+        name: 'Recruitment',
+        link: '/recruitment'
+    }, {
+        name: 'Guest house',
+        link: '/guest-house'
     }];
     const formsLinks = [{
         name: 'Train Ticket Booking',
@@ -231,9 +257,7 @@ const DropdownButton = ({buttonText, buttonClass, linksArray, type}) => {
             onClose={handleClose}>
             {
                 type === 'ROUTE' ? linksArray.map((item, i) => {
-                    return (userEmail !== 'admin' && item.name === 'Outreach') || (userEmail !== 'admin' && item.name === 'Graphics') ?
-                        null :
-                        <MenuItem key={i} onClick={handleClose}><Link className={'form-links'}
+                    return <MenuItem key={i} onClick={handleClose}><Link className={'form-links'}
                                                                       to={item.link}>{item.name}</Link></MenuItem>
                 }) : linksArray.map((item, i) => {
                     return <MenuItem key={i} onClick={handleClose}><a className={'form-links'} href={item.link}

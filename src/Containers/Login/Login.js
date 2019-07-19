@@ -1,8 +1,7 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core";
 import {withRouter} from "react-router";
@@ -80,11 +79,11 @@ const Inputs = (props) => {
         };
         fetch(`${baseUrl}/api/authenticate`, {
             method: 'POST',
-            headers:{
+            headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(o)
-        }).then((success) => success.json()).then((data)=> {
+        }).then((success) => success.json()).then((data) => {
             if (data && data.error) {
                 throw data.error
             }
@@ -122,8 +121,9 @@ const Inputs = (props) => {
                 <div>
                     <img width={'100%'} src={require('../../static/logo.png')}/>
                 </div>
-                <Toast message={toastData.message} handleClose={handleClose} open={toastData.isOpen} toastClassName={toastData.className}/>
-               <form className={classes.form} noValidate>
+                <Toast message={toastData.message} handleClose={handleClose} open={toastData.isOpen}
+                       toastClassName={toastData.className}/>
+                <form className={classes.form} noValidate>
                     <TextField
                         variant="outlined"
                         margin="normal"

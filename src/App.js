@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import './App.scss';
 import Home from "./Containers/Home/Home";
-import {BrowserRouter, Redirect} from "react-router-dom";
-import {Route} from "react-router";
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Redirect,
+    withRouter
+} from "react-router-dom";
 import Login from "./Containers/Login/Login";
 
 class App extends Component {
@@ -11,17 +16,34 @@ class App extends Component {
         if (localStorage.getItem('loggedIn') && localStorage.getItem('loggedIn') === 'YES') {
             localStorage.removeItem('loggedIn')
         }
-        const authCheck = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : false;
-        const view = authCheck ? <Route path={'/'} component={Home}/> : <Redirect to={{
-            pathname: '/login'
-        }} />;
         return (
-            <BrowserRouter>
-                {view}
+            <Router>
+                <PrivateRoute path={'/'} exact component={Home}/>
                 <Route path={'/login'} component={Login}/>
-            </BrowserRouter>
+            </Router>
         )
     }
+}
+
+function PrivateRoute({ component, ...rest }) {
+    const authCheck = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : false;
+    console.log();
+    return (
+        <Route
+            {...rest}
+            render={props =>
+                authCheck ? (
+                    <Component {...props} />
+                ) : (
+                    <Redirect
+                        to={{
+                            pathname: "/login"
+                        }}
+                    />
+                )
+            }
+        />
+    );
 }
 
 export default App;
