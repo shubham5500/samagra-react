@@ -14,6 +14,7 @@ import TableRow from "@material-ui/core/TableRow";
 import {Link, Route} from "react-router-dom";
 import {ExitToApp} from '@material-ui/icons';
 import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
 
 
 class Home extends Component {
@@ -47,17 +48,19 @@ export default Home;
 
 const HomePageTables = () => {
     return (
-        <Grid container className={'center'}>
-            <Grid item xs={9}>
-                <Typography variant="h4" style={{margin: '10px 0 30px 0'}} component="h3">
-                    Explore all internal Samagra resources here
-                </Typography>
-                <EnsuringDeliveryTable/>
-                <DrivingGrowthTable/>
-                <NurturingTalentTable/>
-                <FacilitatingOperationsTable/>
+        <Container maxWidth={'lg'} style={{marginTop: '20px'}}>
+            <Grid container className={'center'}>
+                <Grid item xs={9}>
+                    <Typography variant="h4" style={{margin: '10px 0 30px 0'}} component="h3">
+                        Explore all internal Samagra resources here
+                    </Typography>
+                    <EnsuringDeliveryTable/>
+                    <DrivingGrowthTable/>
+                    <NurturingTalentTable/>
+                    <FacilitatingOperationsTable/>
+                </Grid>
             </Grid>
-        </Grid>
+        </Container>
     )
 };
 
@@ -65,7 +68,7 @@ const DashboardSamagra = () => {
     return (
         <div>
             <iframe src="http://165.227.62.196:3000/public/dashboard/ca691014-04b6-49ac-a449-bcbdad4350c2"
-                    frameBorder="0" width="100%" height="600" allowtransparency="true"/>
+                    frameBorder="0" width="100%" height="900" allowtransparency="true"/>
         </div>
     )
 };
@@ -74,7 +77,7 @@ const DashboardTeam = () => {
     return (
         <div>
             <iframe src="http://165.227.62.196:3000/public/dashboard/961323d3-b81f-4826-99c0-b79c6fc7afa6"
-                    frameBorder="0" width="100%" height="600" allowtransparency="true"/>
+                    frameBorder="0" width="100%" height="900" allowtransparency="true"/>
         </div>
     )
 };
@@ -83,7 +86,7 @@ const DashboardIndividual = () => {
     return (
         <div>
             <iframe src="http://165.227.62.196:3000/public/dashboard/48a1916c-ee70-40c0-ae02-db5a8c16aa6d"
-                    frameBorder="0" width="800" height="600" allowTransparency="true"/>
+                    frameBorder="0" width="100%" height="900" allowTransparency="true"/>
 
         </div>
     )
@@ -93,7 +96,7 @@ const DashboardOutreach = () => {
     return (
         <div>
             <iframe src="http://165.227.62.196:3000/public/dashboard/2fa9a3e1-aef7-4d4c-affb-c9a8925a7a6a"
-                    frameBorder="0" width="800" height="600" allowtransparency="true"/>
+                    frameBorder="0" width="100%" height="900" allowtransparency="true"/>
         </div>
     )
 };
@@ -103,7 +106,7 @@ const DashboardGraphics = () => {
     return (
         <div>
             <iframe src="http://165.227.62.196:3000/public/dashboard/175960a5-e748-431f-843e-983d0d07e51d"
-                    frameBorder="0" width="800" height="600" allowtransparency="true"/>
+                    frameBorder="0" width="100%" height="900" allowtransparency="true"/>
         </div>
     )
 };
@@ -169,10 +172,10 @@ const Navbar = () => {
     }, {
         name: 'Referral Form',
         link: 'https://docs.google.com/forms/d/e/1FAIpQLSdDC33OAKcFxkPj8TMayZQqMgikOGR_ECUoWM5ycZCS1SVBbQ/viewform'
-    },{
+    }, {
         name: 'Book Issue & Return',
         link: 'https://docs.google.com/a/samagragovernance.in/forms/d/180SokjC6FgyzPbY4i6oHq4-kkhUcAmrqhVTlbn5_2Cs/edit?usp=drive_open'
-    },{
+    }, {
         name: 'Darshan Application',
         link: 'https://docs.google.com/forms/d/e/1FAIpQLSdRU--X2KltfWqevkk526kUJKBhZtLiehE97FpPmrJjz8NC3A/viewform'
     },];
@@ -185,7 +188,8 @@ const Navbar = () => {
                             Home
                         </Button>
                     </Link>
-                    <DropdownButton buttonClass={classes.button} buttonText={'Dashboards'} linksArray={dashboardLinks} type={'ROUTE'}/>
+                    <DropdownButton buttonClass={classes.button} buttonText={'Dashboards'} linksArray={dashboardLinks}
+                                    type={'ROUTE'}/>
                     <DropdownButton buttonClass={classes.button} buttonText={'Go To Forms'} linksArray={formsLinks}/>
 
                     <Button color="inherit" style={{marginLeft: 'auto'}} className={classes.button} onClick={() => {
@@ -226,13 +230,15 @@ const DropdownButton = ({buttonText, buttonClass, linksArray, type}) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}>
             {
-               type === 'ROUTE' ?  linksArray.map((item, i) => {
+                type === 'ROUTE' ? linksArray.map((item, i) => {
                     return (userEmail !== 'admin' && item.name === 'Outreach') || (userEmail !== 'admin' && item.name === 'Graphics') ?
                         null :
-                        <MenuItem key={i} onClick={handleClose}><Link className={'form-links'} to={item.link}>{item.name}</Link></MenuItem>
+                        <MenuItem key={i} onClick={handleClose}><Link className={'form-links'}
+                                                                      to={item.link}>{item.name}</Link></MenuItem>
                 }) : linksArray.map((item, i) => {
-                   return <MenuItem key={i} onClick={handleClose}><a className={'form-links'} href={item.link} target={'_blank'}>{item.name}</a></MenuItem>
-               })
+                    return <MenuItem key={i} onClick={handleClose}><a className={'form-links'} href={item.link}
+                                                                      target={'_blank'}>{item.name}</a></MenuItem>
+                })
             }
         </Menu>
     </Aux>)
@@ -419,7 +425,7 @@ const FacilitatingOperationsTable = () => {
         name: 'Location Guidelines',
         subHeading: 'Travel',
         link: 'https://drive.google.com/drive/folders/11wYyjXr_3JUH0hvsVkCGiaT0ArL82dw3?usp=sharing'
-    },{
+    }, {
         name: 'Cab Guidelines',
         subHeading: 'Travel',
         link: 'https://docs.google.com/document/d/141Vj8D1pXuqiptZgz0OkRyjhzBoICJuTzQFWcf-BAzc/edit?usp=sharing'
@@ -455,7 +461,7 @@ const FacilitatingOperationsTable = () => {
         name: 'Graphics | Leveraging Designer Guidelines',
         subHeading: 'Shared Services',
         link: 'https://drive.google.com/file/d/1_NLaX1yMToO9js6skoETw0XDdvy80S3h/view?usp=sharing'
-    },  {
+    }, {
         name: 'Graphics | Design Calendar',
         subHeading: 'Shared Services',
         link: 'https://docs.google.com/spreadsheets/d/1Dp9wHXFAHpbqfpBEJOVv2GiU1yjZYVLdSGLUELvHrCs/edit?usp=sharing'
@@ -483,7 +489,7 @@ const FacilitatingOperationsTable = () => {
         name: 'Policy',
         subHeading: 'Policy Against Sexual Harassment',
         link: 'https://docs.google.com/document/d/1-pFkmGHrZWC5qLo7BUHYEFoIGLoZw0mMwiwwbQ8Eb_E/edit?usp=sharing'
-    },{
+    }, {
         name: 'ICC Operating Guidelines',
         subHeading: 'Policy Against Sexual Harassment',
         link: 'https://docs.google.com/document/d/1pVbDzHvcAVjVrSBwzxz7JkKPFJGnRMkWz5x289FuzhU/edit?usp=sharing'
