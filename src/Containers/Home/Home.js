@@ -82,8 +82,9 @@ const DashboardTeam = () => {
 const DashboardIndividual = () => {
     return (
         <div>
-            <iframe src="http://165.227.62.196:3000/public/dashboard/dd3b845f-0f03-4fd9-b73a-6372fbbfb510"
-                    frameBorder="0" width="100%" height="600" allowtransparency="true"/>
+            <iframe src="http://165.227.62.196:3000/public/dashboard/48a1916c-ee70-40c0-ae02-db5a8c16aa6d"
+                    frameBorder="0" width="800" height="600" allowTransparency="true"/>
+
         </div>
     )
 };
@@ -161,7 +162,7 @@ const Navbar = () => {
         link: 'https://docs.google.com/forms/d/e/1FAIpQLSdtkFsdDQbT6ieqJ9sTUOaI7AsMBWkPtAQU9pXVnVRDe3aCDA/viewform?usp=sf_link'
     }, {
         name: 'Leave Application',
-        link: 'https://docs.google.com/forms/d/e/1FAIpQLSdtkFsdDQbT6ieqJ9sTUOaI7AsMBWkPtAQU9pXVnVRDe3aCDA/viewform?usp=sf_link'
+        link: 'https://forms.gle/6FXcavxJbqUmfBM67'
     }, {
         name: 'Graphic Design Request',
         link: 'https://docs.google.com/forms/d/e/1FAIpQLScshUW8u6qgDWtqwjB4aokHozvoztdQH05X-DoXXmDgSRNFcQ/viewform'
@@ -250,7 +251,7 @@ const EnsuringDeliveryTable = () => {
     const body = [{
         name: 'Samagra Quality Review Framework',
         subHeading: 'Process',
-        link: 'https://docs.google.com/document/d/1CtteOYbzmbXQA-aXZ4TgqZQZM2-av4M9eleJiEVcE38/edit'
+        link: 'https://docs.google.com/document/d/1CtteOYbzmbXQA-aXZ4TgqZQZM2-av4M9eleJiEVcE38/edit?usp=sharing'
     }, {
         name: 'Samagra Team Processes',
         subHeading: 'Process',
@@ -270,7 +271,7 @@ const EnsuringDeliveryTable = () => {
     }, {
         name: 'Samagra Workstream Dashboard Checklist',
         subHeading: 'Guidelines & Checklists',
-        link: 'https://drive.google.com/drive/u/1/folders/16Y7ft2zUhmrYrGm0l8__ppjcivnMKXXq'
+        link: 'https://drive.google.com/file/d/1dfh6SJ1gqiALdzuMhKCs187oiaFmVCEr/view?usp=sharing'
     }, {
         name: 'Manager\'s Checklist & Tracker',
         subHeading: 'Guidelines & Checklists',
@@ -321,9 +322,9 @@ const DrivingGrowthTable = () => {
         subHeading: 'Recruitment',
         link: 'https://docs.google.com/spreadsheets/d/1XLQzLq-_dGcEpHdl5aJd-yVlFFNinbQ99IRKLmZYptg/edit#gid=0'
     }, {
-        name: 'Outreach Plan',
+        name: 'Samagra Articles',
         subHeading: 'Outreach',
-        link: 'https://drive.google.com/open?id=1YUe53P8AZXNR_LRzruDbwPbHklUYpvvF'
+        link: 'https://drive.google.com/file/d/1ob7il5oO-gmJKctlGAsr4sQx0lQg10pq/view?usp=sharing'
     },];
 
     const headerView = <TableRow>{
@@ -405,27 +406,35 @@ const FacilitatingOperationsTable = () => {
     const body = [{
         name: 'Guest House Facilities List',
         subHeading: 'Stay',
-        link: 'https://docs.google.com/spreadsheets/d/1xDL-yFB32d3tseFLz0_CRWqZ0ZkAai7PmpHxqs-C6Bo/edit#gid=947839659'
+        link: 'https://docs.google.com/spreadsheets/d/1M7PfJQrFgHIdPMl9-3-h4LZaDz1INlOMtZwIqLxxoeI/edit?usp=sharing'
+    }, {
+        name: 'Chandigarh Guest House Forms',
+        subHeading: 'Stay',
+        link: 'https://drive.google.com/drive/folders/11wYyjXr_3JUH0hvsVkCGiaT0ArL82dw3?usp=sharing'
     }, {
         name: 'Delhi Office Management Checklist',
         subHeading: 'Stay',
         link: 'https://docs.google.com/spreadsheets/d/1rC7gQ-awZsEZbsGcqWecksAkb8C6Ftny97kHFKgPoaY/edit#gid=0'
     }, {
+        name: 'Location Guidelines',
+        subHeading: 'Travel',
+        link: 'https://drive.google.com/drive/folders/11wYyjXr_3JUH0hvsVkCGiaT0ArL82dw3?usp=sharing'
+    },{
         name: 'Cab Guidelines',
         subHeading: 'Travel',
-        link: 'https://drive.google.com/open?id=1iCXL2lcCl64fXPmu9khaydKsR2-WpioK'
+        link: 'https://docs.google.com/document/d/141Vj8D1pXuqiptZgz0OkRyjhzBoICJuTzQFWcf-BAzc/edit?usp=sharing'
     }, {
         name: 'Train Guidelines',
         subHeading: 'Travel',
-        link: 'https://drive.google.com/file/d/1z6F6oP7AheWRGHeiq01X0dNSav_XoPW2/view?usp=sharing'
+        link: 'https://drive.google.com/file/d/1BwYMSNe5SmAnLn4ix1Po6tQho0hfYiMn/view?usp=sharing'
     }, {
         name: 'Air Travel Guidelines',
         subHeading: 'Travel',
-        link: 'https://drive.google.com/file/d/15qxdgz78R3iyvnILESptErGGkgxtv1pG/view?usp=sharing'
+        link: 'https://drive.google.com/file/d/1s4uJNrXy1w-xVTiDfzc_dWeL4Cu1WUDi/view?usp=sharing'
     }, {
         name: 'Leave Policy',
         subHeading: 'Leaves',
-        link: 'https://drive.google.com/open?id=1dfwDmuJ-FuRyhh2D62UH9lJBKbmszPji'
+        link: 'https://docs.google.com/document/d/1KXZJKXTINzvcLVhPC8_TF3A7wI3_KZq9Zgwe8qlQRVw/edit'
     }, {
         name: 'Holiday List',
         subHeading: 'Leaves',
@@ -433,43 +442,51 @@ const FacilitatingOperationsTable = () => {
     }, {
         name: 'Darshan Guidelines',
         subHeading: 'Leaves',
-        link: 'https://drive.google.com/file/d/1KaSFPr63Yt5HlTf0gQH12MZDeC1buDAI/view?usp=sharing'
+        link: 'https://drive.google.com/file/d/1_B-d0VS83aJvBjtCZ-h4UlJNqfhS2gWt/view?usp=sharing'
     }, {
-        name: 'Tech Directory',
-        subHeading: 'Services',
+        name: 'Tech | Directory',
+        subHeading: 'Shared Services',
         link: 'https://docs.google.com/document/d/1wiKsSrtkfWoPzsO_VBLDHBQsn9IGI5RW_DeHk-FqBVo/edit#'
     }, {
-        name: 'Graphic Design & Branding Guidelines',
-        subHeading: 'Services',
-        link: 'https://drive.google.com/drive/u/1/folders/1PzUVWdMr0FU2yCBtoVh7CfD0ZpL-fzYE'
+        name: 'Graphics | Branding Guidelines',
+        subHeading: 'Shared Services',
+        link: 'https://docs.google.com/document/d/1ft_Dra1rj146bBXKObxkdzBxqm8YEzfX6mBG-NDTTyU/edit?usp=sharing'
     }, {
-        name: 'Graphic Design Calendar',
-        subHeading: 'Services',
-        link: 'https://docs.google.com/spreadsheets/d/1UxhLpwkzNoUcWzHNuh4Cwa8amq3lllpmAg67n0t5f4o/edit#gid=2095892444'
+        name: 'Graphics | Leveraging Designer Guidelines',
+        subHeading: 'Shared Services',
+        link: 'https://drive.google.com/file/d/1_NLaX1yMToO9js6skoETw0XDdvy80S3h/view?usp=sharing'
+    },  {
+        name: 'Graphics | Design Calendar',
+        subHeading: 'Shared Services',
+        link: 'https://docs.google.com/spreadsheets/d/1Dp9wHXFAHpbqfpBEJOVv2GiU1yjZYVLdSGLUELvHrCs/edit?usp=sharing'
     }, {
-        name: 'Library Guidelines',
-        subHeading: 'Services',
-        link: 'https://drive.google.com/file/d/1BxzngZo548_BqJKWNfnn6Qng6mSMB7rb/view?usp=sharing'
+        name: 'Library | Guidelines',
+        subHeading: 'Shared Services',
+        link: 'https://drive.google.com/file/d/1O6qDet18OfSHx30F7EoX_0EkgkmV-755/view?usp=sharing'
     }, {
-        name: 'Library Catalogue',
-        subHeading: 'Services',
-        link: 'https://docs.google.com/spreadsheets/d/1PxYplRzAqISLr3q_A7--nkq5DWhEDR87kkDE-975wwY/edit#gid=944677166'
+        name: 'Library | Catalogue',
+        subHeading: 'Shared Services',
+        link: 'https://docs.google.com/spreadsheets/d/1PxYplRzAqISLr3q_A7--nkq5DWhEDR87kkDE-975wwY/edit?usp=sharing'
     }, {
         name: 'Engagement Update Guidelines',
         subHeading: 'Updates',
-        link: 'https://drive.google.com/file/d/1Lab9eak2I_SA7M7aSO8X4FWvOziRM1D2/view?usp=sharing'
+        link: 'https://drive.google.com/file/d/1LVUhA3CnCMqDGdzgp4uFRxujtkopwKVw/view?usp=sharing'
     }, {
         name: 'Townhall Guidelines',
         subHeading: 'Updates',
-        link: 'https://drive.google.com/file/d/13UD1z3beMEdoBSn8CCquiuZigZ5zPycv/view?usp=sharing'
+        link: 'https://drive.google.com/file/d/1LtPqSRv3-qxnJGW73gjEkDjrjOpz0S-N/view?usp=sharing'
     }, {
         name: 'Townhall PPT and Pictures',
         subHeading: 'Updates',
         link: 'https://drive.google.com/open?id=13VLMfF_6oVJyTar3kCc6QM8tdnwgFU7k'
     }, {
-        name: 'Policy and operating guidelines for ICC',
+        name: 'Policy',
         subHeading: 'Policy Against Sexual Harassment',
-        link: 'https://drive.google.com/open?id=12LAHymwuPW6O6HLt7Cdh1SXX88jroep7'
+        link: 'https://docs.google.com/document/d/1-pFkmGHrZWC5qLo7BUHYEFoIGLoZw0mMwiwwbQ8Eb_E/edit?usp=sharing'
+    },{
+        name: 'ICC Operating Guidelines',
+        subHeading: 'Policy Against Sexual Harassment',
+        link: 'https://docs.google.com/document/d/1pVbDzHvcAVjVrSBwzxz7JkKPFJGnRMkWz5x289FuzhU/edit?usp=sharing'
     },];
 
     const headerView = <TableRow>{

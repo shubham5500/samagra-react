@@ -122,9 +122,6 @@ const Inputs = (props) => {
                 <div>
                     <img width={'100%'} src={require('../../static/logo.png')}/>
                 </div>
-                <Typography component="h1" variant="h5" style={{marginTop: '20px'}}>
-                    Sign in
-                </Typography>
                 <Toast message={toastData.message} handleClose={handleClose} open={toastData.isOpen} toastClassName={toastData.className}/>
                <form className={classes.form} noValidate>
                     <TextField
