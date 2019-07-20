@@ -1,10 +1,10 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {Component, useState} from 'react';
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core";
-import {withRouter} from "react-router";
+import {withRouter} from "react-router-dom";
 import {baseUrl} from "../../Shared/utils";
 import Toast from "../../Components/Toast/Toast";
 import {Redirect} from "react-router-dom";
@@ -12,10 +12,10 @@ import {Redirect} from "react-router-dom";
 class Login extends Component {
     state = {
         isLoggedIn: localStorage.getItem('userData')
-    }
+    };
 
     render() {
-        const {isLoggedIn} = this.state
+        const {isLoggedIn} = this.state;
 
         // here is the important part
         if (isLoggedIn) {
