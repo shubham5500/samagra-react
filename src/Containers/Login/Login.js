@@ -7,9 +7,21 @@ import {makeStyles} from "@material-ui/core";
 import {withRouter} from "react-router";
 import {baseUrl} from "../../Shared/utils";
 import Toast from "../../Components/Toast/Toast";
+import {Redirect} from "react-router-dom";
 
 class Login extends Component {
+    state = {
+        isLoggedIn: localStorage.getItem('userData')
+    }
+
     render() {
+        const {isLoggedIn} = this.state
+
+        // here is the important part
+        if (isLoggedIn) {
+            return <Redirect to="/" push={true}/>
+        }
+
         return (<Container maxWidth="sm">
             <Inputs {...this.props}/>
         </Container>)
