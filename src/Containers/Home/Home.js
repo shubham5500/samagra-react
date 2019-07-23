@@ -256,12 +256,12 @@ const DropdownButton = ({buttonText, buttonClass, linksArray, type}) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}>
             {
-                type === 'ROUTE' ? linksArray.map((item, i) => {
-                    return <MenuItem key={i} onClick={handleClose}><Link className={'form-links'}
-                                                                      to={item.link}>{item.name}</Link></MenuItem>
+                type === 'ROUTE' ?  linksArray.map((item, i) => {
+                    return (userEmail !== 'samagraadmin' && item.name === 'Outreach') || (userEmail !== 'samagraadmin' && item.name === 'Graphics') ?
+                        null :
+                        <MenuItem key={i} onClick={handleClose}><Link className={'form-links'} to={item.link}>{item.name}</Link></MenuItem>
                 }) : linksArray.map((item, i) => {
-                    return <MenuItem key={i} onClick={handleClose}><a className={'form-links'} href={item.link}
-                                                                      target={'_blank'}>{item.name}</a></MenuItem>
+                    return <MenuItem key={i} onClick={handleClose}><a className={'form-links'} href={item.link} target={'_blank'}>{item.name}</a></MenuItem>
                 })
             }
         </Menu>
